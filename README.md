@@ -3,7 +3,7 @@
 # Instrução para baixar, editar e executar local
 ** (\**)
 1. clone do projeto
-git clone https://github.com/vfsphotos/projeto1.git
+## git clone https://github.com/vfsphotos/projeto1.git
 2. entre na pasta do projeto e crie um ambiente virtual python
 cd projeto1
 python -m venv .venv
