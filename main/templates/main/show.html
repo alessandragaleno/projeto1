@@ -1,0 +1,27 @@
+{% block title %}Detalhes das tarefas{% endblock %}
+{% block content %}
+<h1>{{ name }}</h1>
+    <a href="{% url 'index' %}"> <button type="submit">voltar</button></a>
+    <br><br>
+    <form method="post" action="{% url 'store-item' todo_id %}">
+        {% csrf_token %}
+        <input type="text" name="text" placeholder="novo item" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    <hr>
+    <ul>
+          {% for item in items %}
+        <li>
+            {{ item.text }}
+            <form action="{% url 'put-item' item.id %}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-primary">Concluida</button>
+                <button type="submit" class="btn btn-primary">pendente</button>
+            </form>
+                <form method="post" action="{% url 'destroy2' item.todo.id item.id %}">
+                    {% csrf_token %} {% if item.complete %}
+                    <button type="submit">Excluir</button>
+                </form>
+        </li>
+        {% endfor %}
+    </ul>
+        {% endblock %}

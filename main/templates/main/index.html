@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+
+{% block title %}
+Lista de tarefas
+{% endblock %}
+
+{% block content %}
+        <h1>Lista de Tarefas</h1>
+        <form method="post" action="{% url 'store' %}">
+            {% csrf_token %}
+            {{forms.as_p}}
+            <input type="text" name="todo_name" placeholder="nova tarefa" required>
+            <button type="submit">Adicionar</button>
+        </form>
+        <hr>
+        <ul>
+            {% for todo in todos %}
+            <li>
+                {{ todo.name}}
+                <a href="{% url 'show' todo.id %}"><button type="button">abrir</button></a>
+                <form method="post" action="{% url 'destroy' todo.id %}">
+                    {% csrf_token %}
+                    <button type="submit">excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
