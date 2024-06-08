@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from main.models import Todo, Item
+from .forms import ContatoForm
 # Create your views here.
 
 def show(request, id):
      todo = Todo.objects.filter(id=id).first()
      itens = todo.items.all()
      return render(request, 'main/show.html', {'name':todo.name, 'items':itens, 'todo_id':todo.id})
-
 
 def index(request):
     todos = Todo.objects.all()
@@ -45,12 +45,12 @@ def put(request, item_id):
 
 def contato(request):
      if request.method == "POST":
-          form =  ContatoForm(request.POST)
+          form = ContatoForm(request.POST)
           if form.is_valid():
-               nome = form.cleaned_date['assunto']
+               nome = form.cleaned_data['assunto']
                text = form.cleaned_data['mensagem']
                email = form.cleaned_data['email']
-               copia = form.cleaned_date['me_copia']
+               copia = form.cleaned_data['me_copia']
                return redirect('index')
      else:
           form = ContatoForm()
