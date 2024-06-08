@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from main.views import index, show, store, destroy, destroy2, put
+from main.views import index, show, store, destroy, destroy2, put, contato
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:todo_id>/excluir/tarefa/', destroy, name="destroy"),
     path('<int:todo_id>/<int:item_id>/excluir/item/', destroy2, name="destroy2"),
     path('item/<int:item_id>/edit/', put, name='put-item'),
+    path('contato/', contato, name='contato')
 ]

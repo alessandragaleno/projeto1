@@ -41,3 +41,17 @@ def put(request, item_id):
           item.complete = not item.complete
           item.save()
           return redirect('show', id=item.todo.id)
+
+
+def contato(request):
+     if request.method == "POST":
+          form =  ContatoForm(request.POST)
+          if form.is_valid():
+               nome = form.cleaned_date['assunto']
+               text = form.cleaned_data['mensagem']
+               email = form.cleaned_data['email']
+               copia = form.cleaned_date['me_copia']
+               return redirect('index')
+     else:
+          form = ContatoForm()
+          return render(request, 'main/contato.html', {'form':form})
